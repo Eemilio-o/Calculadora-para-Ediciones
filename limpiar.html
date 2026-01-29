@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpiar Datos Guardados</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background: #c0392b;
+        }
+
+        .success {
+            background: #27ae60;
+        }
+
+        .success:hover {
+            background: #229954;
+        }
+
+        .info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>🔧 Herramienta de Limpieza</h1>
+        <p>Si tienes problemas con fechas guardadas que no se pueden eliminar o cargar, usa esta herramienta para
+            limpiar todos los datos guardados.</p>
+
+        <div class="info">
+            <strong>⚠️ Advertencia:</strong> Esta acción eliminará TODAS las fechas guardadas de forma permanente.
+        </div>
+
+        <button onclick="limpiarDatos()">🗑️ Limpiar Todos los Datos</button>
+        <button class="success" onclick="volverACalculadora()">← Volver a la Calculadora</button>
+
+        <div id="mensaje" style="margin-top: 20px; font-weight: bold;"></div>
+    </div>
+
+    <script>
+        function limpiarDatos() {
+            if (confirm('¿Estás seguro de que quieres eliminar TODAS las fechas guardadas?')) {
+                localStorage.removeItem('fechasEdiciones');
+                document.getElementById('mensaje').style.color = '#27ae60';
+                document.getElementById('mensaje').textContent = '✓ Todos los datos han sido eliminados correctamente.';
+
+                setTimeout(() => {
+                    volverACalculadora();
+                }, 2000);
+            }
+        }
+
+        function volverACalculadora() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>

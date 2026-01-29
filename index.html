@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calculadora de fechas profesional para ediciones - Calcula automáticamente fechas desde el día -11 hasta el día 32">
+    <title>Calculadora de Fechas - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📅 Calculadora de Fechas de Ediciones</h1>
+            <p class="subtitle">Gestiona tus fechas de edición de manera profesional</p>
+        </header>
+
+        <main class="main-content">
+            <div class="input-section card">
+                <h2>Configuración</h2>
+
+                <!-- Sección de fechas guardadas -->
+                <div id="saved-section" class="saved-section hidden">
+                    <div class="input-group">
+                        <label for="saved-dates-select">📂 Cargar fecha guardada:</label>
+                        <div class="select-group">
+                            <select id="saved-dates-select" class="date-select">
+                                <option value="">Selecciona una fecha guardada...</option>
+                            </select>
+                            <button id="delete-saved-btn" class="btn-icon btn-delete" title="Eliminar fecha guardada">
+                                🗑️
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="dia1">Selecciona el Día 1:</label>
+                    <input type="date" id="dia1" class="date-input">
+                </div>
+                <button id="calcular-btn" class="btn btn-primary">
+                    <span>Calcular Fechas</span>
+                </button>
+            </div>
+
+            <div id="results-section" class="results-section card hidden">
+                <div class="results-header">
+                    <h2>Fechas Calculadas</h2>
+                    <div class="button-group">
+                        <button id="guardar-btn" class="btn btn-success">
+                            <span>💾 Guardar Fechas</span>
+                        </button>
+                        <button id="exportar-btn" class="btn btn-secondary">
+                            <span>📥 Exportar a Excel</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="fechas-table">
+                        <thead>
+                            <tr>
+                                <th>Día</th>
+                                <th>Fecha</th>
+                                <th>Día de la Semana</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fechas-tbody">
+                            <!-- Las fechas se generarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Total de días:</span>
+                        <span class="stat-value">43</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Rango:</span>
+                        <span class="stat-value">Día -10 a Día 32</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>© 2026 Calculadora de Ediciones - Herramienta Profesional</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
