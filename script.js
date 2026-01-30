@@ -33,17 +33,20 @@ function formatearFecha(fecha) {
 }
 
 /**
- * Calcula todas las fechas desde el día -10 hasta el día 32
+ * Calcula todas las fechas desde el día -11 hasta el día 32 (sin día 0)
  */
 function calcularFechas(dia1) {
     const fechas = [];
     const fechaBase = new Date(dia1);
 
-    // Calcular desde el día -10 hasta el día 32
+    // Calcular desde el día -11 hasta el día 32, saltando el día 0
     // El Día 1 debe ser exactamente la fecha seleccionada
-    for (let i = -10; i <= 32; i++) {
+    for (let i = -11; i <= 32; i++) {
+        // Saltar el día 0
+        if (i === 0) continue;
+
         const fecha = new Date(fechaBase);
-        // Restar 1 porque el Día 1 debe ser la fecha base, no base + 1
+        // Ajustar para que el Día 1 sea la fecha base
         fecha.setDate(fechaBase.getDate() + i - 1);
 
         fechas.push({
