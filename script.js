@@ -33,20 +33,17 @@ function formatearFecha(fecha) {
 }
 
 /**
- * Calcula todas las fechas desde el día -11 hasta el día 32 (sin día 0)
+ * Calcula todas las fechas desde el día -10 hasta el día 32 (incluyendo día 0)
  */
 function calcularFechas(dia1) {
     const fechas = [];
     const fechaBase = new Date(dia1);
 
-    // Calcular desde el día -11 hasta el día 32, saltando el día 0
-    // El Día 1 debe ser exactamente la fecha seleccionada
-    for (let i = -11; i <= 32; i++) {
-        // Saltar el día 0
-        if (i === 0) continue;
-
+    // Calcular desde el día -10 hasta el día 32, incluyendo el día 0
+    // El Día 1 es la fecha seleccionada, día 0 es un día antes, día -1 es dos días antes, etc.
+    for (let i = -10; i <= 32; i++) {
         const fecha = new Date(fechaBase);
-        // Ajustar para que el Día 1 sea la fecha base
+        // Día 1 = fecha base, día 0 = fecha base - 1, día -1 = fecha base - 2, etc.
         fecha.setDate(fechaBase.getDate() + i - 1);
 
         fechas.push({
@@ -75,9 +72,21 @@ function renderizarTabla(fechas) {
             tr.style.fontWeight = '600';
         }
 
-        // Resaltar días negativos
-        if (item.dia < 0) {
+        // Resaltar días negativos y día 0
+        if (item.dia <= 0) {
             tr.style.color = '#7f8c8d';
+        }
+
+        // Aplicar colores de fondo según rangos de días
+        if (item.dia >= 4 && item.dia <= 10) {
+            // Naranja intermedio (menos claro) para días 4-10
+            tr.style.background = '#ffcc99';
+        } else if (item.dia >= 11 && item.dia <= 15) {
+            // Naranja más oscuro para días 11-15 (sin cambios)
+            tr.style.background = '#ffb366';
+        } else if (item.dia >= 16 && item.dia <= 22) {
+            // Rojo apagado (menos rosa) para días 16-22
+            tr.style.background = '#e6b0aa';
         }
 
         tr.innerHTML = `
